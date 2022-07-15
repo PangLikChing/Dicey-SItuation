@@ -8,7 +8,7 @@ public class CharacterBase : MonoBehaviour
     [Header("Status")]
     [SerializeField] protected float health = 100f;
     [SerializeField] protected float maxHealth = 100f;
-    [SerializeField] protected bool alive = false;
+    [SerializeField] protected bool alive = true;
     public UnityEvent<CharacterBase> onDeath;
 
     public float Health
