@@ -50,6 +50,12 @@ public class UIManager : MonoBehaviour
             // Get the difference
             int difference = health - healthIconsParent.childCount;
 
+            // Set all heart icons to active
+            for (int i = 0; i < healthIconsParent.childCount; i++)
+            {
+                healthIconsParent.GetChild(i).gameObject.SetActive(true);
+            }
+
             // Instantiate hearts for the icon parent according to the difference
             for (int i = 0; i < difference; i++)
             {
