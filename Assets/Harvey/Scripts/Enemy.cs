@@ -5,12 +5,8 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(NavMeshAgent), typeof(CapsuleCollider))]
-public class Enemy : MonoBehaviour
+public class Enemy : CharacterBase
 {
-    [Tooltip("The maximum health of the enemy")]
-    [SerializeField] int maxHealth = 0;
-    [Tooltip("The current health of the enemy")]
-    int currentHealth = 0;
     [Tooltip("The nav mesh agent of the enemy")]
     [HideInInspector] public NavMeshAgent navMeshAgent;
     [Tooltip("The player's transform")]
@@ -25,26 +21,26 @@ public class Enemy : MonoBehaviour
         // Initialize
         navMeshAgent = GetComponent<NavMeshAgent>();
         player = GameManager.Instance.player.transform;
-        currentHealth = maxHealth;
+        health = maxHealth;
 
         // Tell game manager that an enemy is spawnned
         enemySpawn.Invoke(this);
     }
 
-    public virtual void TakeDamage(int damage)
+    public override void TakeDamage(int damage)
     {
         // Take damage
-        currentHealth -= damage;
+        health -= damage;
 
         // If health is less than or equal to 0
-        if (currentHealth >= 0)
+        if (health >= 0)
         {
             // Die
-            Death();
+            Die();
         }
     }
 
-    private void Death()
+    protected override void Die()
     {
         // Throw a debug message
         Debug.Log($"{gameObject.name} is dead!");

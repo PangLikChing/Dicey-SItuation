@@ -36,10 +36,10 @@ public class Snake : Enemy
         base.TakeDamage(damage);
 
         // Die
-        Death();
+        Die();
     }
 
-    private void Death()
+    protected override void Die()
     {
         // Transition to death state
         fsmAnimator.SetTrigger("Death");
