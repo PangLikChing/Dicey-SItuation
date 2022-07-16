@@ -5,12 +5,18 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider))]
 public class Snake : Enemy
 {
-    [Tooltip("Recoil time of the snake")]
+    [Tooltip("The push direction for the knockback")]
+    Vector3 pushDirection;
+    [Tooltip("Recoil time of the snake (in seconds)")]
     public float recoilTime = 0;
-    [Tooltip("Stun time of the snake")]
+    [Tooltip("Stun time of the snake (in seconds)")]
     public float stunTime = 0;
-    [Tooltip("Time before disappearing after death for the snake")]
+    [Tooltip("Time before disappearing after death for the snake (in seconds)")]
     public float timeBeforeDisappear = 0;
+    [Tooltip("The snake cannot deal damage within this cooldown time (in seconds), cannot be longer than recoil time")]
+    [SerializeField] float attackCooldown;
+    [Tooltip("Attack timer for tracking attack cooldown (in seconds)")]
+    float attackCountdown;
     [Tooltip("Damage of the snake")]
     [SerializeField] int damage = 1;
     [Tooltip("Knockback force of the snake")]
@@ -21,7 +27,32 @@ public class Snake : Enemy
     public Animator[] animationAnimators;
     [Tooltip("The fsm of the snake")]
     [HideInInspector] public Animator fsmAnimator;
-    Vector3 pushDirection;
+
+    void Start()
+    {
+        // Initialize
+
+        // Do not allow attack cooldown longer than recoil time
+        if (recoilTime < attackCooldown)
+        {
+            attackCooldown = recoilTime;
+        }
+    }
+
+    void Update()
+    {
+        // If the snake's attack is still under cooldown
+        if (attackCountdown < attackCooldown)
+        {
+            // Increament the countdown timer by the time passed in real time
+            attackCountdown += Time.deltaTime;
+        }
+        else
+        {
+            // Ignore
+            return;
+        }
+    }
 
     private void OnTriggerStay(Collider other)
     {
