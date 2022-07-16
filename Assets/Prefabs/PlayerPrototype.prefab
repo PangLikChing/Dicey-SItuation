@@ -239,6 +239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72ba095dadbd9514c920c11602cf4849, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   maxHealth: 100
   alive: 1
   onDeath:
@@ -252,6 +253,7 @@ MonoBehaviour:
   isGrounded: 0
   diceRoll: 0
   rollTimer: 0
+  diceSides: {fileID: 7169069469878766754}
   rb: {fileID: 3608409546560076904}
 --- !u!65 &9191000107178210318
 BoxCollider:
@@ -541,3 +543,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f25429fabcdb2740856a5ab81a52b91, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sides:
+  - {fileID: 6504688497613480986}
+  - {fileID: 1762957223417797323}
+  - {fileID: 4961204575656472153}
+  - {fileID: 3438732652552049962}
+  - {fileID: 982097552818945945}
+  - {fileID: 3984621028547956528}

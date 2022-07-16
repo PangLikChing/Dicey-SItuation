@@ -8,22 +8,31 @@ public class PlayerLogic : CharacterBase
     public float moveSpeed = 10.0f;
 
     [Header("Dice Roll")]
+    [Tooltip("How much vertical force we apply to the dice on a jump")]
     public float vertJumpForce = 10f;
-    public float horJumpForce = 2.5f;
+    [Tooltip("How much torque should we apply when player tries to roll the dice")]
     public float rotTorque = 20f;
+    [Tooltip("How much time should pass after player rolls the dice before they can roll again")]
     public float rollCooldown = 1f;
+    [Tooltip("How much time in seconds should we wait before we count the collision")]
+    public float collisionTime = 0.2f;
     [SerializeField] protected bool isGrounded = false;
     [SerializeField] protected bool diceRoll = false;
     [SerializeField] protected float rollTimer = 0f;
-
+    [SerializeField] protected float colTimer = 0f;
+    [SerializeField] protected DiceSides diceSides;
 
     public Rigidbody rb;
 
     protected virtual void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody>();
+
+        if (diceSides == null) diceSides = GetComponentInChildren<DiceSides>();
     
         GameManager.Instance.player = this;
+
+        health = maxHealth;
     }
 
     protected virtual void Update()
@@ -56,27 +65,48 @@ public class PlayerLogic : CharacterBase
     }
 
     protected void OnCollisionStay(Collision collision)
-    {
-        isGrounded = true;
-        rb.angularVelocity = Vector3.zero;
-
-        if(diceRoll)
+    {     
+        if(colTimer >= collisionTime)
         {
-            // TODO: Result calculations
-            return;
+            isGrounded = true;
+            rb.angularVelocity = Vector3.zero;
+            
+            if(diceRoll)
+            {
+                diceRoll = false;
+                GetDiceResults();
+            }
+        }
+        else
+        {
+            colTimer += Time.deltaTime;
         }
     }
 
     protected void OnCollisionExit(Collision collision)
     {
         isGrounded = false;
+        colTimer = 0f;
     }
 
     protected void RollTheDice()
     {
         rollTimer = rollCooldown;
-        Vector3 jumpForce = Vector3.up * vertJumpForce + Vector3.forward * horJumpForce;
+        Vector3 jumpForce = Vector3.up * vertJumpForce;
         rb.AddForce(jumpForce, ForceMode.Impulse);
+
+        StartCoroutine(RTD());
+    }
+
+    protected void GetDiceResults()
+    {
+        Debug.Log(diceSides.GetHighestSide());
+    }
+
+    IEnumerator RTD()
+    {
+        yield return new WaitForSeconds(collisionTime);
+
         isGrounded = false;
         diceRoll = true;
     }
