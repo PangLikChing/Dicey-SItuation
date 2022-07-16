@@ -16,8 +16,7 @@ public class SnakeChaseState : SnakeBaseState
         player = snake.player;
         navMeshAgent = snake.navMeshAgent;
 
-        // Play the idle animation
-        // The animation should be a looping one
+        // Play the walk animation
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

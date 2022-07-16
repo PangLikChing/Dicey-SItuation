@@ -6,9 +6,11 @@ public abstract class FSM : MonoBehaviour
 {
     public RuntimeAnimatorController FSMController;
 
+    [HideInInspector] public GameObject FSMGO;
+
     protected virtual void Awake()
     {
-        GameObject FSMGO = new GameObject("FSM", typeof(Animator));
+        FSMGO = new GameObject("FSM", typeof(Animator));
         FSMGO.transform.parent = transform;
 
         Animator animator = FSMGO.GetComponent<Animator>();

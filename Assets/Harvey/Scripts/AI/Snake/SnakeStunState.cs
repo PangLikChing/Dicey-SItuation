@@ -1,38 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class SnakeRecoilState : SnakeBaseState
+public class SnakeStunState : SnakeBaseState
 {
-    [Tooltip("The recoil time of the snake")]
-    float recoilTime;
-    [Tooltip("The recoil countdown timer of the snake")]
-    float recoilCountdown = 0.0f;
+    [Tooltip("The stun time of the snake")]
+    float stunTime;
+    [Tooltip("The stun countdown timer of the snake")]
+    float stunCountdown = 0.0f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Initialize
-        recoilTime = snake.recoilTime;
-        recoilCountdown = 0.0f;
-
-        // Disable the snake's colider to prevent multiple hits
-        snake.GetComponent<CapsuleCollider>().enabled = false;
+        stunTime = snake.stunTime;
+        stunCountdown = 0.0f;
 
         // Play the idle animation
 
 
         // Throw a debug message
-        Debug.Log("Recoil");
+        Debug.Log("Stun");
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // If the snake is still recovering from recoil
-        if (recoilCountdown < recoilTime)
+        // If the snake is still recovering from stun
+        if (stunCountdown < stunTime)
         {
             // Increament the countdown timer by the time passed in real time
-            recoilCountdown += Time.deltaTime;
+            stunCountdown += Time.deltaTime;
         }
         else
         {
@@ -43,7 +39,5 @@ public class SnakeRecoilState : SnakeBaseState
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Reset the snake's colider
-        snake.GetComponent<CapsuleCollider>().enabled = true;
     }
 }

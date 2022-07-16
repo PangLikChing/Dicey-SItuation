@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CapsuleCollider))]
 public class Snake : Enemy
 {
-    [Tooltip("The recoil time of the snake")]
+    [Tooltip("Recoil time of the snake")]
     public float recoilTime = 0;
+    [Tooltip("Stun time of the snake")]
+    public float stunTime = 0;
+    [Tooltip("Time before disappearing after death for the snake")]
+    public float timeBeforeDisappear = 0;
     [Tooltip("The fsm of the snake")]
     [HideInInspector] public Animator fsmAnimator;
-    public int damage = 5;
-
-
-    void Start()
-    {
-        // Initialize
-        fsmAnimator = transform.GetChild(transform.childCount - 1).GetComponent<Animator>();
-    }
+    [Tooltip("Damage of the snake")]
+    [SerializeField] int damage = 1;
 
     private void OnTriggerStay(Collider other)
     {
@@ -36,18 +35,22 @@ public class Snake : Enemy
     public override void TakeDamage(int damage)
     {
         // Take damage
-        base.TakeDamage(damage);
+        health -= damage;
 
-        // Die
-        Die();
+        // Stun the snake
+        fsmAnimator.SetTrigger("Stun");
+
+        // If health is less than or equal to 0
+        if (health <= 0)
+        {
+            // Die
+            Die();
+        }
     }
 
     protected override void Die()
     {
         // Transition to death state
         fsmAnimator.SetTrigger("Death");
-
-        // Throw a debug message
-        Debug.Log($"{gameObject.name} in death state.");
     }
 }

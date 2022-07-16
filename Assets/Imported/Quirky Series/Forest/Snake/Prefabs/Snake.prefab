@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7193122485777780208}
   - component: {fileID: 1188186252514206214}
-  - component: {fileID: 4782461970725297622}
   - component: {fileID: 1058519903}
   - component: {fileID: -3606900441859898736}
   - component: {fileID: -3066439399939915822}
@@ -73,30 +72,6 @@ LODGroup:
     renderers:
     - renderer: {fileID: 100343638329205913}
   m_Enabled: 1
---- !u!114 &4782461970725297622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7193122485777780209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffefff620bb6e6b41a5269685b4124be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Update:
-    m_PersistentCalls:
-      m_Calls: []
-  UpdateAmmo:
-    m_PersistentCalls:
-      m_Calls: []
-  testIntValue1: 0
-  testIntValue2: 0
-  testFloatValue: 0
-  takeDamage:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!136 &1058519903
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -184,6 +159,8 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   recoilTime: 3
+  stunTime: 1
+  timeBeforeDisappear: 5
   fsmAnimator: {fileID: 0}
   damage: 1
 --- !u!114 &-8995801397790163004
@@ -199,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FSMController: {fileID: 9100000, guid: 9eb39b5d91a980e41bf513f14b4e80e2, type: 2}
+  FSMGO: {fileID: 0}
   _animator: {fileID: 0}
   snake: {fileID: 0}
 --- !u!95 &7805854738929837946
