@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
+    public PlayerLogic player;
    
     public enum GameState
     {   MainMenu,
@@ -14,7 +15,7 @@ public class GameManager : Singleton<GameManager>
     public List<GameObject> enemyList;
 
     //Store the player here when we get it
-    //public PlayerController player { get; set; }
+    //public PlayerLogic player { get; set; }
 
     public uint highScore { get; set; }
     public uint score { get; set; }
