@@ -120,12 +120,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3967e92121945041812c732b8d955df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   navMeshAgent: {fileID: 0}
   player: {fileID: 0}
   enemySpawn:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 11400000, guid: 91adaee6a7ea69741a50d5682e184a43, type: 2}
+        m_TargetAssemblyTypeName: EnemyEventChannel, Assembly-CSharp
+        m_MethodName: Raise
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  enemyDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 00c6233ef13d1ff4282d75067be0c8c0, type: 2}
         m_TargetAssemblyTypeName: EnemyEventChannel, Assembly-CSharp
         m_MethodName: Raise
         m_Mode: 0

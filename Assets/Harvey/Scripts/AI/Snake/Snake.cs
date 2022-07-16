@@ -29,4 +29,22 @@ public class Snake : Enemy
             fsmAnimator.SetTrigger("Recoil");
         }
     }
+
+    public override void TakeDamage(int damage)
+    {
+        // Take damage
+        base.TakeDamage(damage);
+
+        // Die
+        Death();
+    }
+
+    private void Death()
+    {
+        // Transition to death state
+        fsmAnimator.SetTrigger("Death");
+
+        // Throw a debug message
+        Debug.Log($"{gameObject.name} in death state.");
+    }
 }
