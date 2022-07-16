@@ -16,6 +16,10 @@ public class PlayerLogic : CharacterBase
     [SerializeField] protected bool diceRoll = false;
     [SerializeField] protected float rollTimer = 0f;
 
+    [Header("Guns")]
+    public GunParent gunParent;
+
+
 
     public Rigidbody rb;
 
@@ -87,5 +91,10 @@ public class PlayerLogic : CharacterBase
 
         if (health <= 0)
             Die();
+    }
+
+    public void Attack()
+    {
+
     }
 }
