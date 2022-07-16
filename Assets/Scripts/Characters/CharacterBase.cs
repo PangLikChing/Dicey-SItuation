@@ -1,3 +1,4 @@
+using Project.Build.Commands;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +7,7 @@ using UnityEngine.Events;
 public class CharacterBase : MonoBehaviour
 {
     [Header("Status")]
-    protected int health = 100;
+    [ReadOnly] protected int health = 100;
     [SerializeField] protected int maxHealth = 100;
     [SerializeField] protected bool alive = true;
     public UnityEvent<CharacterBase> onDeath;
