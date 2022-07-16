@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  maxHealth: 10
+  maxHealth: 2
   alive: 1
   onDeath:
     m_PersistentCalls:
@@ -185,7 +185,7 @@ MonoBehaviour:
         m_CallState: 2
   recoilTime: 3
   fsmAnimator: {fileID: 0}
-  damage: 5
+  damage: 1
 --- !u!114 &-8995801397790163004
 MonoBehaviour:
   m_ObjectHideFlags: 0

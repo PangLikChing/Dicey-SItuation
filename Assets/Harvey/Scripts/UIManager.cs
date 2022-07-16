@@ -70,19 +70,27 @@ public class UIManager : MonoBehaviour
         // If the heart icons on the screen now is sufficant to display the health
         else
         {
-            // Get the difference
-            int difference = healthIconsParent.childCount - health;
-
-            // Set all heart icons to active
-            for (int i = 0; i < healthIconsParent.childCount; i++)
+            try
             {
-                healthIconsParent.GetChild(i).gameObject.SetActive(true);
+                // Get the difference
+                int difference = healthIconsParent.childCount - health;
+
+                // Set all heart icons to active
+                for (int i = 0; i < healthIconsParent.childCount; i++)
+                {
+                    healthIconsParent.GetChild(i).gameObject.SetActive(true);
+                }
+
+                // Hide the unneccessary amount of heart icons
+                for (int i = 0; i < difference; i++)
+                {
+                    healthIconsParent.GetChild(i).gameObject.SetActive(false);
+                }
             }
-
-            // Hide the unneccessary amount of heart icons
-            for (int i = 0; i < difference; i++)
+            catch
             {
-                healthIconsParent.GetChild(i).gameObject.SetActive(false);
+                // Throw a debug message
+                Debug.Log("Health is negative!");
             }
         }
     }
