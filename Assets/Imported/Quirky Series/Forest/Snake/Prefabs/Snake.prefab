@@ -163,8 +163,8 @@ MonoBehaviour:
   timeBeforeDisappear: 5
   attackCooldown: 1
   damage: 1
-  knockbackForce: 200
-  uppercutForce: 100
+  knockbackForce: 5
+  uppercutForce: 5
   animationAnimators:
   - {fileID: 5430502240716017888}
   - {fileID: 4183118214553138018}

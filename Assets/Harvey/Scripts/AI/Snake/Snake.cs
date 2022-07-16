@@ -59,26 +59,33 @@ public class Snake : Enemy
         // If the enemy collide with the player
         if (other.transform.GetComponent<PlayerLogic>() != null)
         {
-            // Calculate the push direction
-            pushDirection = -(transform.position - other.transform.position).normalized;
-
-            try
+            // If the snake is able to attack
+            if (attackCountdown >= attackCooldown)
             {
-                // Push the player away from the snake
-                other.transform.GetComponent<Rigidbody>().AddForce(uppercutForce * Vector3.up);
-                other.transform.GetComponent<Rigidbody>().AddForce(knockbackForce * pushDirection);
-            }
-            catch
-            {
-                Debug.Log($"{other.gameObject.name} does not have a Rigidbody!");
-            }
+                // Calculate the push direction
+                pushDirection = -(transform.position - other.transform.position).normalized;
 
-            // Reduce player's health
-            GameManager.Instance.player.TakeDamage(damage);
-            Debug.Log("Player got hit");
+                try
+                {
+                    // Push the player away from the snake
+                    other.transform.GetComponent<Rigidbody>().AddForce(uppercutForce * Vector3.up, ForceMode.Impulse);
+                    other.transform.GetComponent<Rigidbody>().AddForce(knockbackForce * pushDirection, ForceMode.Impulse);
+                }
+                catch
+                {
+                    Debug.Log($"{other.gameObject.name} does not have a Rigidbody!");
+                }
 
-            // Stop for a while
-            fsmAnimator.SetTrigger("Recoil");
+                // Reduce player's health
+                GameManager.Instance.player.TakeDamage(damage);
+                Debug.Log("Player got hit");
+
+                // Stop for a while
+                fsmAnimator.SetTrigger("Recoil");
+
+                // Reset attack countdown
+                attackCountdown = 0.0f;
+            }
         }
     }
 
