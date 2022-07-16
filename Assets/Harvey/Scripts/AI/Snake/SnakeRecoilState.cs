@@ -19,8 +19,11 @@ public class SnakeRecoilState : SnakeBaseState
         // Disable the snake's colider to prevent multiple hits
         snake.GetComponent<CapsuleCollider>().enabled = false;
 
-        // Play the idle animation
-
+        // Play the Munch animation
+        for (int i = 0; i < snake.animationAnimators.Length; i++)
+        {
+            snake.animationAnimators[i].SetTrigger("Munch");
+        }
 
         // Throw a debug message
         Debug.Log("Recoil");

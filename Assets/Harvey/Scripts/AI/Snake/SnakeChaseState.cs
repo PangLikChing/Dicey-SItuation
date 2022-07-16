@@ -16,7 +16,11 @@ public class SnakeChaseState : SnakeBaseState
         player = snake.player;
         navMeshAgent = snake.navMeshAgent;
 
-        // Play the walk animation
+        // Play the Run animation
+        for (int i = 0; i < snake.animationAnimators.Length; i++)
+        {
+            snake.animationAnimators[i].SetTrigger("Run");
+        }
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)

@@ -19,6 +19,12 @@ public class SnakeDeathState : SnakeBaseState
         // Disable the snake's colider
         snake.GetComponent<CapsuleCollider>().enabled = false;
 
+        // Play the Death animation
+        for (int i = 0; i < snake.animationAnimators.Length; i++)
+        {
+            snake.animationAnimators[i].SetTrigger("Death");
+        }
+
         Debug.Log($"{snake.gameObject.name} dead");
     }
 
