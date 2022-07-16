@@ -1064,7 +1064,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9125690227543364121, guid: 5923ecd838267334fb2f41dfe39be57d, type: 3}
       propertyPath: spawnInterval
-      value: 15
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9125690227543364121, guid: 5923ecd838267334fb2f41dfe39be57d, type: 3}
       propertyPath: listOfSpawn.Array.size

@@ -13,17 +13,34 @@ public class Snake : Enemy
     public float timeBeforeDisappear = 0;
     [Tooltip("Damage of the snake")]
     [SerializeField] int damage = 1;
+    [Tooltip("Knockback force of the snake")]
+    [SerializeField] int knockbackForce = 1;
+    [Tooltip("Uppercut force of the snake")]
+    [SerializeField] int uppercutForce = 1;
     [Tooltip("Animators that control animation of the snake")]
     public Animator[] animationAnimators;
     [Tooltip("The fsm of the snake")]
     [HideInInspector] public Animator fsmAnimator;
+    Vector3 pushDirection;
 
     private void OnTriggerStay(Collider other)
     {
         // If the enemy collide with the player
         if (other.transform.GetComponent<PlayerLogic>() != null)
         {
-            // Push the player away from the snake
+            // Calculate the push direction
+            pushDirection = -(transform.position - other.transform.position).normalized;
+
+            try
+            {
+                // Push the player away from the snake
+                other.transform.GetComponent<Rigidbody>().AddForce(uppercutForce * Vector3.up);
+                other.transform.GetComponent<Rigidbody>().AddForce(knockbackForce * pushDirection);
+            }
+            catch
+            {
+                Debug.Log($"{other.gameObject.name} does not have a Rigidbody!");
+            }
 
             // Reduce player's health
             GameManager.Instance.player.TakeDamage(damage);
