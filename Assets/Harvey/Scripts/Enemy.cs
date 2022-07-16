@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(NavMeshAgent), typeof(CapsuleCollider))]
+[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : CharacterBase
 {
     [Tooltip("The nav mesh agent of the enemy")]
@@ -33,7 +33,7 @@ public class Enemy : CharacterBase
         health -= damage;
 
         // If health is less than or equal to 0
-        if (health >= 0)
+        if (health <= 0)
         {
             // Die
             Die();

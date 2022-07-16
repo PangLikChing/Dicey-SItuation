@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
 public class GameManager : Singleton<GameManager>
 {
-    public PlayerLogic player;
-   
     public enum GameState
     {   MainMenu,
         Pause,
@@ -12,22 +12,37 @@ public class GameManager : Singleton<GameManager>
     }
     public GameState gameState;
 
-    public List<GameObject> enemyList;
+    public List<Enemy> enemyList;
+    public UnityEvent<int> updateHealth;
+    public UnityEvent<int> updateScore;
 
-    //Store the player here when we get it
-    //public PlayerLogic player { get; set; }
+    public PlayerLogic player { get; set; }
 
-    public uint highScore { get; set; }
-    public uint score { get; set; }
-    public uint HP { get; set; }
+    public int highScore { get; set; }
+    public int score { get; set; }
+    public int HP { get; set; }
+
+    [Tooltip("Enemy death gives this score to the player")]
+    public int enemyScoreValue = 10;
 
     private void Start()
     {
-        enemyList = new List<GameObject>();
+        enemyList = new List<Enemy>();
     }
 
-    public void SpawnEnemyListenerEvent()
+    public void SpawnEnemyListenerEvent(Enemy enemy)
     {
-        //Add the enemy to the list to enemyList here when we have their class.
+        enemyList.Add(enemy);
     }
+
+    public void UpdateScoreEvent(int _score)
+    {
+        score += _score;
+    }
+
+    public void EnemyDiedListenerEvent(Enemy enemy)
+    {
+        updateScore?.Invoke(enemyScoreValue);
+    }
+
 }

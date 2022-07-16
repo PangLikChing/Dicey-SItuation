@@ -23,6 +23,6 @@ public class Test : MonoBehaviour
 
     private void Start()
     {
-        takeDamage.Invoke(1);
+        takeDamage.Invoke(10);
     }
 }

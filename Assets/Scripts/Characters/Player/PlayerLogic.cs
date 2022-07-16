@@ -22,6 +22,8 @@ public class PlayerLogic : CharacterBase
     protected virtual void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody>();
+    
+        GameManager.Instance.player = this;
     }
 
     protected virtual void Update()
@@ -77,5 +79,13 @@ public class PlayerLogic : CharacterBase
         rb.AddForce(jumpForce, ForceMode.Impulse);
         isGrounded = false;
         diceRoll = true;
+    }
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        GameManager.Instance.updateHealth?.Invoke(health);
+
+        if (health <= 0)
+            Die();
     }
 }

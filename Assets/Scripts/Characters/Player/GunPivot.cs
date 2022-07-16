@@ -8,23 +8,33 @@ public class GunPivot : MonoBehaviour
 
     private void Update()
     {
-        transform.position = follow.position;
-
-        #region RotateToMousePos
-        Vector3 mousePos = Input.mousePosition;
-
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
-
-        Vector3 lookAt = Vector3.zero;
-
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        if (follow != null)
         {
-            lookAt = hit.point;
+
+
+            transform.position = follow.position;
+
+            #region RotateToMousePos
+            Vector3 mousePos = Input.mousePosition;
+
+            Ray ray = Camera.main.ScreenPointToRay(mousePos);
+
+            Vector3 lookAt = Vector3.zero;
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                lookAt = hit.point;
+            }
+
+            lookAt.y = transform.position.y;
+
+            transform.LookAt(lookAt);
+            #endregion
+        }
+        else
+        {
+            Destroy(gameObject);
         }
 
-        lookAt.y = transform.position.y;
-
-        transform.LookAt(lookAt);
-        #endregion
     }
 }

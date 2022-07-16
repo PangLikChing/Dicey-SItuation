@@ -120,7 +120,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3967e92121945041812c732b8d955df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  health: 100
+  maxHealth: 2
+  alive: 1
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
   navMeshAgent: {fileID: 0}
   player: {fileID: 0}
   enemySpawn:
@@ -154,7 +159,10 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   recoilTime: 3
+  stunTime: 1
+  timeBeforeDisappear: 5
   fsmAnimator: {fileID: 0}
+  damage: 1
 --- !u!114 &-8995801397790163004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FSMController: {fileID: 9100000, guid: 9eb39b5d91a980e41bf513f14b4e80e2, type: 2}
+  FSMGO: {fileID: 0}
   _animator: {fileID: 0}
   snake: {fileID: 0}
 --- !u!95 &7805854738929837946

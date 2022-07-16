@@ -16,14 +16,20 @@ public class SnakeChaseState : SnakeBaseState
         player = snake.player;
         navMeshAgent = snake.navMeshAgent;
 
-        // Play the idle animation
-        // The animation should be a looping one
+        // Play the walk animation
     }
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Move towards the player
-        navMeshAgent.SetDestination(player.position);
+        if (player != null)
+        {
+            // Move towards the player
+            navMeshAgent.SetDestination(player.position);
+        }
+        else
+        {
+            navMeshAgent.ResetPath();
+        }
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
