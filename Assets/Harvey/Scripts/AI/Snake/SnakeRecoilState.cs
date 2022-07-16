@@ -16,9 +16,6 @@ public class SnakeRecoilState : SnakeBaseState
         recoilTime = snake.recoilTime;
         recoilCountdown = 0.0f;
 
-        // Disable the snake's colider to prevent multiple hits
-        snake.GetComponent<CapsuleCollider>().enabled = false;
-
         // Play the Munch animation
         for (int i = 0; i < snake.animationAnimators.Length; i++)
         {
@@ -46,7 +43,5 @@ public class SnakeRecoilState : SnakeBaseState
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Reset the snake's colider
-        snake.GetComponent<CapsuleCollider>().enabled = true;
     }
 }

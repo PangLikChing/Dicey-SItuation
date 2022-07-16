@@ -161,9 +161,10 @@ MonoBehaviour:
   recoilTime: 3
   stunTime: 1
   timeBeforeDisappear: 5
+  attackCooldown: 1
   damage: 1
-  knockbackForce: 300
-  uppercutForce: 200
+  knockbackForce: 200
+  uppercutForce: 100
   animationAnimators:
   - {fileID: 5430502240716017888}
   - {fileID: 4183118214553138018}
