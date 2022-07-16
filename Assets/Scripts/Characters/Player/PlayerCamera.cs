@@ -5,14 +5,14 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     public Vector3 cameraOffset;
-    [SerializeField] Transform player;
+    public Transform follow;
 
     private void Update()
     {
-        if (player != null)
+        if (follow != null)
         {
-            transform.position = player.position + cameraOffset;
-            transform.LookAt(player);
+            transform.position = follow.position + cameraOffset;
+            transform.LookAt(follow);
         }
     }
 }
