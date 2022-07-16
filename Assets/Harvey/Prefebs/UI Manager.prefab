@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 1317335820}
   - component: {fileID: 1317335819}
   - component: {fileID: 1317335821}
+  - component: {fileID: 203778194}
+  - component: {fileID: 6842308859351085976}
   m_Layer: 0
   m_Name: UI Manager
   m_TagString: Untagged
@@ -49,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentScoreScoreText: {fileID: 0}
   highScoreScoreText: {fileID: 0}
+  ammoText: {fileID: 0}
+  weaponImage: {fileID: 0}
   heartImagePrefeb: {fileID: 0}
   healthIconsParent: {fileID: 0}
 --- !u!114 &1317335820
@@ -126,6 +130,62 @@ MonoBehaviour:
       - m_Target: {fileID: 1317335818}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: UpdateHealth
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &203778194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7661177255665433477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45e00f46fcc48a4cb325a9b5f2749cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: {fileID: 11400000, guid: 8bb0a4fc785cc2f4980edd2b7ea1dc75, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1317335818}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: UpdateAmmo
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6842308859351085976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7661177255665433477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83ddf8c7bcd1e45489f0d13b4ecb940c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  channel: {fileID: 11400000, guid: f939d59dce623814b90ee5761ffdef01, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1317335818}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: UpdateWeaponSprite
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

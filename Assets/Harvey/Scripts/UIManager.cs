@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
@@ -9,6 +10,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] TMP_Text currentScoreScoreText;
     [Tooltip("The text that shows the player's high score")]
     [SerializeField] TMP_Text highScoreScoreText;
+    [Tooltip("The text that shows the player's ammo")]
+    [SerializeField] TMP_Text ammoText;
+    [Tooltip("The text that shows the player's ammo")]
+    [SerializeField] Image weaponImage;
     [Tooltip("The prefebs for the heart image")]
     [SerializeField] GameObject heartImagePrefeb;
     [Tooltip("The parent for the heart objects that respresents player's life")]
@@ -80,5 +85,17 @@ public class UIManager : MonoBehaviour
                 healthIconsParent.GetChild(i).gameObject.SetActive(false);
             }
         }
+    }
+
+    public void UpdateAmmo(int currentAmmo, int maxAmmo)
+    {
+        // Update the ammo text
+        ammoText.text = $"Ammo: {currentAmmo} / {maxAmmo}";
+    }
+
+    public void UpdateWeaponSprite(Sprite sprite)
+    {
+        // Update the waepon's sprite
+        weaponImage.sprite = sprite;
     }
 }
