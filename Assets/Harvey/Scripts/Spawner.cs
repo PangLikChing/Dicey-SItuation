@@ -15,9 +15,6 @@ public class Spawner : MonoBehaviour
     [Tooltip("The time interval that you want the spawner to spawn objects")]
     [SerializeField] float spawnInterval;
 
-    [Tooltip("The event rasied when the spawner spawns an object")]
-    public UnityEvent SpawnEnemy;
-
     void Start()
     {
         // If the list of spawning object is empty for some reason
@@ -59,9 +56,6 @@ public class Spawner : MonoBehaviour
 
                 // Spawn the gameObject prefeb
                 SpawnGameObject(listOfSpawn[index]);
-
-                // Notify the game manager that I spawned an object
-                SpawnEnemy.Invoke();
             }
         }
     }
