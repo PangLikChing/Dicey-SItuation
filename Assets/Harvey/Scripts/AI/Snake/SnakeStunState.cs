@@ -15,8 +15,11 @@ public class SnakeStunState : SnakeBaseState
         stunTime = snake.stunTime;
         stunCountdown = 0.0f;
 
-        // Play the idle animation
-
+        // Play the Fear animation
+        for (int i = 0; i < snake.animationAnimators.Length; i++)
+        {
+            snake.animationAnimators[i].SetTrigger("Fear");
+        }
 
         // Throw a debug message
         Debug.Log("Stun");

@@ -14,6 +14,12 @@ public class SnakeIdleState : SnakeBaseState
 
         Debug.Log("Snake spawnned");
 
+        // Play the Idle animation
+        for (int i = 0; i < snake.animationAnimators.Length; i++)
+        {
+            snake.animationAnimators[i].SetTrigger("Idle");
+        }
+
         // temp, see if there are anything need to be done before finishing idle
         snake.fsmAnimator.SetTrigger("Chase");
     }

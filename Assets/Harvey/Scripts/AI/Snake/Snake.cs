@@ -11,10 +11,12 @@ public class Snake : Enemy
     public float stunTime = 0;
     [Tooltip("Time before disappearing after death for the snake")]
     public float timeBeforeDisappear = 0;
-    [Tooltip("The fsm of the snake")]
-    [HideInInspector] public Animator fsmAnimator;
     [Tooltip("Damage of the snake")]
     [SerializeField] int damage = 1;
+    [Tooltip("Animators that control animation of the snake")]
+    public Animator[] animationAnimators;
+    [Tooltip("The fsm of the snake")]
+    [HideInInspector] public Animator fsmAnimator;
 
     private void OnTriggerStay(Collider other)
     {
