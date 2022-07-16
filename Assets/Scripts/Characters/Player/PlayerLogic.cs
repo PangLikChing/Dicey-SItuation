@@ -6,6 +6,12 @@ public class PlayerLogic : CharacterBase
 {
     public float moveSpeed = 10.0f;
 
+    
+    private void Awake()
+    {
+        GameManager.Instance.player = this;
+    }
+
     protected virtual void Update()
     {
         #region Movement
@@ -19,5 +25,13 @@ public class PlayerLogic : CharacterBase
             transform.Translate(movDir * moveSpeed * Time.deltaTime, Space.World);
         }
         #endregion
+    }
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        GameManager.Instance.updateHealth?.Invoke(health);
+
+        if (health <= 0)
+            Die();
     }
 }

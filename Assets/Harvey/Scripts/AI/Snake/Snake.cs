@@ -8,6 +8,8 @@ public class Snake : Enemy
     public float recoilTime = 0;
     [Tooltip("The fsm of the snake")]
     [HideInInspector] public Animator fsmAnimator;
+    public int damage = 5;
+
 
     void Start()
     {
@@ -23,6 +25,7 @@ public class Snake : Enemy
             // Push the player away from the snake
 
             // Reduce player's health
+            GameManager.Instance.player.TakeDamage(damage);
             Debug.Log("Player got hit");
 
             // Stop for a while

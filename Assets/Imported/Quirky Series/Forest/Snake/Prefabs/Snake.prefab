@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7193122485777780208}
   - component: {fileID: 1188186252514206214}
+  - component: {fileID: 4782461970725297622}
   - component: {fileID: 1058519903}
   - component: {fileID: -3606900441859898736}
   - component: {fileID: -3066439399939915822}
@@ -72,6 +73,30 @@ LODGroup:
     renderers:
     - renderer: {fileID: 100343638329205913}
   m_Enabled: 1
+--- !u!114 &4782461970725297622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7193122485777780209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffefff620bb6e6b41a5269685b4124be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Update:
+    m_PersistentCalls:
+      m_Calls: []
+  UpdateAmmo:
+    m_PersistentCalls:
+      m_Calls: []
+  testIntValue1: 0
+  testIntValue2: 0
+  testFloatValue: 0
+  takeDamage:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!136 &1058519903
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -120,7 +145,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3967e92121945041812c732b8d955df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  health: 100
+  maxHealth: 10
+  alive: 1
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
   navMeshAgent: {fileID: 0}
   player: {fileID: 0}
   enemySpawn:
@@ -155,6 +185,7 @@ MonoBehaviour:
         m_CallState: 2
   recoilTime: 3
   fsmAnimator: {fileID: 0}
+  damage: 5
 --- !u!114 &-8995801397790163004
 MonoBehaviour:
   m_ObjectHideFlags: 0

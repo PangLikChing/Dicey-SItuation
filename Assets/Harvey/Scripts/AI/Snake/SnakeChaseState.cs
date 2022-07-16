@@ -22,8 +22,15 @@ public class SnakeChaseState : SnakeBaseState
 
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Move towards the player
-        navMeshAgent.SetDestination(player.position);
+        if (player != null)
+        {
+            // Move towards the player
+            navMeshAgent.SetDestination(player.position);
+        }
+        else
+        {
+            navMeshAgent.ResetPath();
+        }
     }
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
