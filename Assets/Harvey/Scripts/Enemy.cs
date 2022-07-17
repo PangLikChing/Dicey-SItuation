@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-[RequireComponent(typeof(NavMeshAgent))]
+[RequireComponent(typeof(NavMeshAgent), typeof(Rigidbody))]
 public class Enemy : CharacterBase
 {
     [Tooltip("The nav mesh agent of the enemy")]

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -15,6 +16,8 @@ public class GameManager : Singleton<GameManager>
 
     List<Enemy> enemyList;
 
+    [Tooltip("The name of the main menu scene")]
+    [SerializeField] string mainMenuSceneName = "Main Menu";
     [Tooltip("The maximum amount of enemies can be present at once in the game world")]
     [SerializeField] int maximumEnemies = 10;
 
@@ -109,7 +112,9 @@ public class GameManager : Singleton<GameManager>
         // See if the highscore should be updated
         UpdateHighscore(score);
 
-        // something more here
+        // Throw the player back to the main menu
+        SceneManager.LoadScene(mainMenuSceneName);
+
 
         Debug.Log("Player Death");
     }

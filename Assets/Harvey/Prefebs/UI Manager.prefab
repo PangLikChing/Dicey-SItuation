@@ -53,7 +53,7 @@ MonoBehaviour:
   highScoreScoreText: {fileID: 0}
   ammoText: {fileID: 0}
   weaponImage: {fileID: 0}
-  heartImagePrefeb: {fileID: 0}
+  heartImagePrefeb: {fileID: 4874789035953707352, guid: 874733c478130c54a9013d4905f92f40, type: 3}
   healthIconsParent: {fileID: 0}
 --- !u!114 &1317335820
 MonoBehaviour:

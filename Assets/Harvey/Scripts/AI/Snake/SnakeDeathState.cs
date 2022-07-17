@@ -21,6 +21,7 @@ public class SnakeDeathState : SnakeBaseState
 
         // Stop the snake
         navMeshAgent.ResetPath();
+        snake.GetComponent<Rigidbody>().isKinematic = true;
 
         // Disable the snake's colider
         snake.GetComponent<CapsuleCollider>().enabled = false;
