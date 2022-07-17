@@ -870,7 +870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_ammo: 30
-  damage: 3
+  damage: 2
   firing_speed: 0.2
   model: {fileID: 54697072136517619}
   type: 1
@@ -978,7 +978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   max_ammo: 10
   damage: 2
-  firing_speed: 0.4
+  firing_speed: 0.5
   model: {fileID: 2440598174905741227}
   type: 3
   projectile: {fileID: 7626790509301294942, guid: f20777c0afbcea34cbec5c147496f369, type: 3}
@@ -1079,7 +1079,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_ammo: 8
-  damage: 2
+  damage: 1
   firing_speed: 0.3
   model: {fileID: 4097340609012501324}
   type: 2
@@ -1181,7 +1181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   max_ammo: 7
-  damage: 3
+  damage: 1
   firing_speed: 0.4
   model: {fileID: 8015239548364354028}
   type: 0
