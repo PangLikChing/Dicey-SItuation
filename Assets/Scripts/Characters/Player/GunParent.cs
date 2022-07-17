@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GunParent : MonoBehaviour
 {
+    //The guns themselves
+    public Gun automatic;
+    public Gun pistol;
+
+
     //GunParent Stats, these are the ones that the player and UI will need access to.
   [ReadOnly]  public Gun.GunType type;
   [ReadOnly] public int ammo;
@@ -22,7 +27,6 @@ public class GunParent : MonoBehaviour
         }
 
     }
-
     private void Update()
     {
         shootCD += Time.deltaTime;

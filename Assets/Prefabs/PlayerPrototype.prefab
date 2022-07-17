@@ -446,6 +446,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b212adcd7f5ce646ae77f388c7155a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  automatic: {fileID: 5081711491341492801}
+  pistol: {fileID: 7988747328238981675}
   type: 0
   ammo: 0
   max_ammo: 0
