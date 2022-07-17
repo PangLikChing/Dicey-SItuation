@@ -1255,7 +1255,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   gunshot:
     audioClip: {fileID: 8300000, guid: 2c00a8ac572adfb489225e00d67fd01a, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
   muzzleFlash: {fileID: 3054593111251256085}
 --- !u!4 &58543357619429091 stripped
@@ -1367,7 +1367,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   gunshot:
     audioClip: {fileID: 8300000, guid: ecaf4ba7d6a4e2a4fa638e4eb04b41b6, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
   muzzleFlash: {fileID: 7371748336716550893}
 --- !u!1001 &3053697423112452321
@@ -1630,7 +1630,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   gunshot:
     audioClip: {fileID: 8300000, guid: 88576ee0195d2f6498652347c344a837, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
   muzzleFlash: {fileID: 3222150936519101019}
 --- !u!1001 &4674089644838697971
@@ -1971,7 +1971,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   gunshot:
     audioClip: {fileID: 8300000, guid: b7eccf9199edff141a0ae0aafde596ea, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
   muzzleFlash: {fileID: 7442005808446043246}
 --- !u!1001 &8557475915805902706
@@ -2077,7 +2077,7 @@ MonoBehaviour:
   sprite: {fileID: 0}
   gunshot:
     audioClip: {fileID: 8300000, guid: 647d5c4ab5d8d684f9c6deb119531959, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
   muzzleFlash: {fileID: 4672838811794341895}
 --- !u!4 &8560276331206629916 stripped
