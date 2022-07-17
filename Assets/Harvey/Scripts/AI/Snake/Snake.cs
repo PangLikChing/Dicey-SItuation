@@ -57,26 +57,26 @@ public class Snake : Enemy
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionStay(Collision collision)
     {
         // If the enemy collide with the player
-        if (other.transform.GetComponent<PlayerLogic>() != null)
+        if (collision.transform.GetComponent<PlayerLogic>() != null)
         {
             // If the snake is able to attack
             if (attackCountdown >= attackCooldown)
             {
                 // Calculate the push direction
-                pushDirection = -(transform.position - other.transform.position).normalized;
+                pushDirection = -(transform.position - collision.transform.position).normalized;
 
                 try
                 {
                     // Push the player away from the snake
-                    other.transform.GetComponent<Rigidbody>().AddForce(uppercutForce * Vector3.up, ForceMode.Impulse);
-                    other.transform.GetComponent<Rigidbody>().AddForce(knockbackForce * pushDirection, ForceMode.Impulse);
+                    collision.transform.GetComponent<Rigidbody>().AddForce(uppercutForce * Vector3.up, ForceMode.Impulse);
+                    collision.transform.GetComponent<Rigidbody>().AddForce(knockbackForce * pushDirection, ForceMode.Impulse);
                 }
                 catch
                 {
-                    Debug.Log($"{other.gameObject.name} does not have a Rigidbody!");
+                    Debug.Log($"{collision.gameObject.name} does not have a Rigidbody!");
                 }
 
                 // Reduce player's health

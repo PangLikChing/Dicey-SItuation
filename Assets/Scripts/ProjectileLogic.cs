@@ -7,11 +7,11 @@ public class ProjectileLogic : MonoBehaviour
 {
    [ReadOnly] public int damage;
     public bool isAOE;
-   [SerializeField] private GameObject AOEObject;
+    public List<Snake> enemiesInRange;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        Snake enemy = other.GetComponent<Snake>();
+        Snake enemy = collision.gameObject.GetComponent<Snake>();
 
         if (enemy != null)
         {
@@ -22,10 +22,35 @@ public class ProjectileLogic : MonoBehaviour
             }
             else
             {
-                AOEObject.GetComponent<ProjectileAOEDamager>().BOOM(damage);
+                if (enemiesInRange.Count != 0)
+                {
+                    foreach (Snake enemies in enemiesInRange)
+                    {
+                        if (enemies != null)
+                        {
+                            enemies.TakeDamage(damage);
+                        }
+                    }
+                }
                 Destroy(this.gameObject);
             }
 
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        Snake enemy = other.GetComponent<Snake>();
+        if (enemy != null)
+        {
+            enemiesInRange.Add(enemy);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        Snake enemy = other.GetComponent<Snake>();
+        if (enemy != null)
+        {
+            enemiesInRange.Remove(enemy);
         }
     }
 
@@ -36,6 +61,7 @@ public class ProjectileLogic : MonoBehaviour
 
     public void SetAOE()
     {
-        AOEObject.SetActive(true);
+        isAOE = true;
+        GetComponent<SphereCollider>().enabled = true;
     }
 }
