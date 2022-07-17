@@ -897,7 +897,7 @@ MonoBehaviour:
   max_ammo: 0
   firing_speed: 0
   gun: {fileID: 7988747328238981675}
-  gunAudio: {fileID: 0}
+  gunAudio: {fileID: 3039281474688174277}
 --- !u!82 &7185593379934581126
 AudioSource:
   m_ObjectHideFlags: 0
@@ -909,7 +909,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1253,7 +1253,7 @@ MonoBehaviour:
   projectile: {fileID: 7626790509301294942, guid: f20777c0afbcea34cbec5c147496f369, type: 3}
   sprite: {fileID: 0}
   gunshot:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 2c00a8ac572adfb489225e00d67fd01a, type: 3}
     volume: 1
     pitch: 1
 --- !u!4 &58543357619429091 stripped
@@ -1364,7 +1364,7 @@ MonoBehaviour:
   projectile: {fileID: 7626790509301294942, guid: f20777c0afbcea34cbec5c147496f369, type: 3}
   sprite: {fileID: 0}
   gunshot:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: ecaf4ba7d6a4e2a4fa638e4eb04b41b6, type: 3}
     volume: 1
     pitch: 1
 --- !u!1001 &4096245747452594214
@@ -1470,7 +1470,7 @@ MonoBehaviour:
   projectile: {fileID: 7626790509301294942, guid: f20777c0afbcea34cbec5c147496f369, type: 3}
   sprite: {fileID: 0}
   gunshot:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 88576ee0195d2f6498652347c344a837, type: 3}
     volume: 1
     pitch: 1
 --- !u!1001 &8015805838416768690
@@ -1586,6 +1586,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6152667762335341398}
     m_Modifications:
+    - target: {fileID: 1269384682211878, guid: 02baef62b1bfedf40bb369fb7542b9e7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1411512464560164, guid: 02baef62b1bfedf40bb369fb7542b9e7, type: 3}
       propertyPath: m_Name
       value: RPG7
@@ -1674,10 +1678,10 @@ MonoBehaviour:
   firing_speed: 0.1
   model: {fileID: 8558880822509803350}
   type: 4
-  projectile: {fileID: 7626790509301294942, guid: f20777c0afbcea34cbec5c147496f369, type: 3}
+  projectile: {fileID: 988464328319440589, guid: f213f0cef81e8ca4ebecc5cb2d906fac, type: 3}
   sprite: {fileID: 0}
   gunshot:
-    audioClip: {fileID: 0}
+    audioClip: {fileID: 8300000, guid: 647d5c4ab5d8d684f9c6deb119531959, type: 3}
     volume: 1
     pitch: 1
 --- !u!4 &8560276331206629916 stripped
