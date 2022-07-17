@@ -253,6 +253,7 @@ MonoBehaviour:
   isGrounded: 0
   diceRoll: 0
   rollTimer: 0
+  diceSides: {fileID: 7169069469878766754}
   rb: {fileID: 3608409546560076904}
 --- !u!65 &9191000107178210318
 BoxCollider:
@@ -892,3 +893,10 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1694449805434718, guid: 6f1a7354265853f44b0ed5e2e43676ad, type: 3}
   m_PrefabInstance: {fileID: 8015805838416768690}
   m_PrefabAsset: {fileID: 0}
+  sides:
+  - {fileID: 6504688497613480986}
+  - {fileID: 1762957223417797323}
+  - {fileID: 4961204575656472153}
+  - {fileID: 3438732652552049962}
+  - {fileID: 982097552818945945}
+  - {fileID: 3984621028547956528}
