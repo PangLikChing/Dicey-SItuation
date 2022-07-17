@@ -22,14 +22,50 @@ public class GunParent : MonoBehaviour
     #endregion
 
     //GunParent Stats, these are the ones that the player and UI will need access to.
+    public Gun.GunType type;
     public int ammo;
     public int max_ammo;
     public float firing_speed;
     public GameObject model;
 
+    //Extra things which need to be private.
+    private float shootCD;
+
     private void Awake()
     {
+        if (GameManager.Instance.player)
+        { 
+            GameManager.Instance.player.gunParent = this;
+        }
 
-        Debug.Assert(GameManager.Instance.player.gunParent = this, "Unable to assign gunParent inside Player");
     }
+
+    public void ChangeGun(Gun _gun)
+    {
+        //If we have the same gun, just reload
+        if (type == _gun.type)
+        {
+            ammo = max_ammo;
+        }
+        else
+        {
+            //Inherit the other stats
+            type = _gun.type;
+            ammo = _gun.max_ammo;
+            firing_speed = _gun.firing_speed;
+
+            //We disable the current model, swap it with the new one and set it active
+            model.SetActive(false);
+            model = _gun.model;
+            model.SetActive(true);
+        }
+    }
+
+    public void Shoot()
+    {
+
+    }
+
+
+
 }
