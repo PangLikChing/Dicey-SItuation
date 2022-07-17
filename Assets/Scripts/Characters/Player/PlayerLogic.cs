@@ -89,7 +89,7 @@ public class PlayerLogic : CharacterBase
         #region Schoot
         if (Input.GetKey(KeyCode.Mouse0))
         {
-            gunParent.Shoot();
+            ShootGun();
         }
         #endregion
     }
