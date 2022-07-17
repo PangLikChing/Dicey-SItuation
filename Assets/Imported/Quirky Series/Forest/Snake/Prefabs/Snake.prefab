@@ -99,7 +99,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 7
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -173,6 +173,7 @@ MonoBehaviour:
   - {fileID: 8980562270500583708}
   - {fileID: 100343638333381209}
   fsmAnimator: {fileID: 0}
+  snakeAudio: {fileID: 0}
 --- !u!114 &-8995801397790163004
 MonoBehaviour:
   m_ObjectHideFlags: 0
