@@ -11,6 +11,8 @@ public class Enemy : CharacterBase
     [HideInInspector] public NavMeshAgent navMeshAgent;
     [Tooltip("The player's transform")]
     [HideInInspector] public Transform player;
+    [Tooltip("Score reward for defeating the enemy")]
+    [HideInInspector] public int enemyScoreValue = 1;
     [Tooltip("The event raised when the enemy first spawn")]
     public UnityEvent<Enemy> enemySpawn;
     [Tooltip("The event raised when the enemy dies")]

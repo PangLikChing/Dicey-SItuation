@@ -25,6 +25,9 @@ public class SnakeDeathState : SnakeBaseState
             snake.animationAnimators[i].SetTrigger("Death");
         }
 
+        // Tell the game manager that this snake is dead
+        snake.enemyDeath.Invoke(snake.GetComponent<Enemy>());
+
         Debug.Log($"{snake.gameObject.name} dead");
     }
 

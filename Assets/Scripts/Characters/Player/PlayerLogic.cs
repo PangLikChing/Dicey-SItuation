@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerLogic : CharacterBase
 {
@@ -21,6 +22,7 @@ public class PlayerLogic : CharacterBase
     [SerializeField] protected float rollTimer = 0f;
     [SerializeField] protected float colTimer = 0f;
     [SerializeField] protected DiceSides diceSides;
+    public UnityEvent playerDeath;
 
     public Rigidbody rb;
 
@@ -29,10 +31,12 @@ public class PlayerLogic : CharacterBase
         if (rb == null) rb = GetComponent<Rigidbody>();
 
         if (diceSides == null) diceSides = GetComponentInChildren<DiceSides>();
-    
-        GameManager.Instance.player = this;
 
         health = maxHealth;
+
+        GameManager.Instance.updateHealth.Invoke(health);
+
+        GameManager.Instance.player = this;
     }
 
     protected virtual void Update()
@@ -116,6 +120,11 @@ public class PlayerLogic : CharacterBase
         GameManager.Instance.updateHealth?.Invoke(health);
 
         if (health <= 0)
+        {
             Die();
+
+            // Tell the game manager that the player is dead
+            playerDeath.Invoke();
+        }
     }
 }

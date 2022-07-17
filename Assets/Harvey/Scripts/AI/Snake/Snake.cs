@@ -13,6 +13,8 @@ public class Snake : Enemy
     public float stunTime = 0;
     [Tooltip("Time before disappearing after death for the snake (in seconds)")]
     public float timeBeforeDisappear = 0;
+    [Tooltip("Score reward for defeating the snake")]
+    [SerializeField] int scoreReward;
     [Tooltip("The snake cannot deal damage within this cooldown time (in seconds), cannot be longer than recoil time")]
     [SerializeField] float attackCooldown;
     [Tooltip("Attack timer for tracking attack cooldown (in seconds)")]
@@ -31,6 +33,7 @@ public class Snake : Enemy
     void Start()
     {
         // Initialize
+        enemyScoreValue = scoreReward;
 
         // Do not allow attack cooldown longer than recoil time
         if (recoilTime < attackCooldown)
