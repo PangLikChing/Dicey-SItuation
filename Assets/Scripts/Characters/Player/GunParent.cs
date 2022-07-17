@@ -5,7 +5,7 @@ using UnityEngine;
 public class GunParent : MonoBehaviour
 {
     //GunParent Stats, these are the ones that the player and UI will need access to.
-  [ReadOnly]  public Gun.GunType type;
+  [ReadOnly] public Gun.GunType type;
   [ReadOnly] public int ammo;
   [ReadOnly] public int max_ammo;
   [ReadOnly] public float firing_speed;
@@ -26,6 +26,7 @@ public class GunParent : MonoBehaviour
         firing_speed = gun.firing_speed;
         ammo = gun.max_ammo;
         max_ammo = gun.max_ammo;
+        GameManager.Instance.updateWeaponSprite.Invoke(gun.sprite);
 
         GameManager.Instance.updateAmmo.Invoke(ammo, max_ammo);
     }
@@ -52,7 +53,9 @@ public class GunParent : MonoBehaviour
             gun.model.SetActive(false);
             gun = _gun;
             gun.model.SetActive(true);
+            GameManager.Instance.updateWeaponSprite.Invoke(gun.sprite);
         }
+
         GameManager.Instance.updateAmmo.Invoke(ammo, max_ammo);
     }
 

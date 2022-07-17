@@ -12,4 +12,5 @@ public class Gun : MonoBehaviour
         public enum GunType { Pistol, Automatic, Shotgun, Sniper, RPG };
         public GunType type;
         public GameObject projectile;
+        public Sprite sprite;
 }

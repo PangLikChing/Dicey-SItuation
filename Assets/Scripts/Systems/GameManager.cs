@@ -143,21 +143,4 @@ public class GameManager : Singleton<GameManager>
             updateHighscore.Invoke(highScore);
         }
     }
-
-    // Function to update the gun sprite and ammo in the game manger
-    public void UpdateGun(GunParent gunParent)
-    {
-        //// Update gun's icon on the UI
-        //updateWeaponSprite.Invoke(gunParent.sprite);
-
-        // Update ammo
-        updateAmmo.Invoke(gunParent.max_ammo, gunParent.max_ammo);
-    }
-
-    // Function to update current ammo in the game manger
-    public void UpdateCurrentAmmo(GunParent gunParent)
-    {
-        // Update ammo
-        updateAmmo.Invoke(gunParent.ammo, gunParent.max_ammo);
-    }
 }
