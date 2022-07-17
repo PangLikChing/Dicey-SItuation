@@ -94,9 +94,12 @@ public class PlayerLogic : CharacterBase
         #endregion
     }
 
+
     protected void OnCollisionStay(Collision collision)
-    {     
-        if(colTimer >= collisionTime)
+    {
+        Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.8f);
+
+        if(colTimer >= collisionTime | hit.collider!=this)
         {
             isGrounded = true;
             rigidBody.angularVelocity = Vector3.zero;
@@ -192,5 +195,11 @@ public class PlayerLogic : CharacterBase
         {
             gunParent.Shoot();
         }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawRay(transform.position, Vector3.down * 0.8f);
     }
 }
