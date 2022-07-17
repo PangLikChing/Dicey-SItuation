@@ -115,6 +115,7 @@ public class GameManager : Singleton<GameManager>
         // Throw the player back to the main menu
         SceneManager.LoadScene(mainMenuSceneName);
 
+
         Debug.Log("Player Death");
     }
 
@@ -147,7 +148,7 @@ public class GameManager : Singleton<GameManager>
     public void UpdateGun(GunParent gunParent)
     {
         //// Update gun's icon on the UI
-        //updateWeaponSprite.Invoke(gunParent);
+        //updateWeaponSprite.Invoke(gunParent.sprite);
 
         // Update ammo
         updateAmmo.Invoke(gunParent.max_ammo, gunParent.max_ammo);
