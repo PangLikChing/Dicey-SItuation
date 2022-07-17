@@ -49,6 +49,7 @@ public class UIManager : MonoBehaviour
 
     public void UpdateHealth(int health)
     {
+        Debug.Log("Updating health");
         // If the required health is more than the heart icons on the screen now
         if (healthIconsParent.childCount < health)
         {

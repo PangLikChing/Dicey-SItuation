@@ -40,14 +40,14 @@ public class PlayerLogic : CharacterBase
 
         health = maxHealth;
 
-        GameManager.Instance.updateHealth.Invoke(health);
-
         GameManager.Instance.player = this;
     }
 
     private void Start()
     {
         RollTheDice();
+
+        GameManager.Instance.updateHealth.Invoke(health);
     }
 
     protected virtual void Update()
