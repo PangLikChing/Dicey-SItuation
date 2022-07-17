@@ -394,7 +394,7 @@ MonoBehaviour:
   maxHealth: 10
   alive: 1
   rigidBody: {fileID: 3608409546560076904}
-  moveSpeed: 10
+  moveSpeed: 7
   vertJumpForce: 20
   rotTorque: 40
   rollCooldown: 1
