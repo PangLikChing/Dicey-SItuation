@@ -9,7 +9,7 @@ public class Gun : MonoBehaviour
         public int damage;
         public float firing_speed;
         public GameObject model;
-        public enum GunType { Pistol, Automatic };
+        public enum GunType { Pistol, Automatic, Shotgun, Sniper, RPG };
         public GunType type;
         public GameObject projectile;
 

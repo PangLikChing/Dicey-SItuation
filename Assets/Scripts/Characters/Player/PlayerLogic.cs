@@ -4,7 +4,9 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class PlayerLogic : CharacterBase
-{
+{    
+    public Rigidbody rigidBody;
+    
     [Header("Movement")]
     public float moveSpeed = 10.0f;
 
@@ -17,23 +19,22 @@ public class PlayerLogic : CharacterBase
     public float rollCooldown = 1f;
     [Tooltip("How much time in seconds should we wait before we count the collision")]
     public float collisionTime = 0.2f;
-    [SerializeField] protected bool isGrounded = false;
-    [SerializeField] protected bool diceRoll = false;
-    [SerializeField] protected float rollTimer = 0f;
+    [SerializeField][ReadOnly] protected bool isGrounded = false;
+    [SerializeField][ReadOnly] protected bool diceRoll = false;
+    [SerializeField][ReadOnly] protected float rollTimer = 0f;
+    [SerializeField][ReadOnly] protected float colTimer = 0f;
+    [SerializeField] protected DiceSides diceSides;
 
     [Header("Guns")]
     public GunParent gunParent;
 
-
-    [SerializeField] protected float colTimer = 0f;
-    [SerializeField] protected DiceSides diceSides;
+    [Header("Events")]
     public UnityEvent playerDeath;
 
-    public Rigidbody rb;
 
     protected virtual void Awake()
     {
-        if (rb == null) rb = GetComponent<Rigidbody>();
+        if (rigidBody == null) rigidBody = GetComponent<Rigidbody>();
 
         if (diceSides == null) diceSides = GetComponentInChildren<DiceSides>();
 
@@ -42,6 +43,11 @@ public class PlayerLogic : CharacterBase
         GameManager.Instance.updateHealth.Invoke(health);
 
         GameManager.Instance.player = this;
+    }
+
+    private void Start()
+    {
+        RollTheDice();
     }
 
     protected virtual void Update()
@@ -58,12 +64,13 @@ public class PlayerLogic : CharacterBase
 
             if(!isGrounded)
             {
-                rb.AddTorque(movDir * rotTorque);
+                rigidBody.AddTorque(movDir * rotTorque);
             }
         }
         #endregion
 
-        if(rollTimer > 0)
+        #region RTD
+        if (rollTimer > 0)
         {
             rollTimer -= Time.deltaTime;
         }
@@ -71,6 +78,14 @@ public class PlayerLogic : CharacterBase
         {
             RollTheDice();
         }
+        #endregion
+
+        #region Schoot
+        if (Input.GetKey(KeyCode.Mouse0))
+        {
+            gunParent.Shoot();
+        }
+        #endregion
     }
 
     protected void OnCollisionStay(Collision collision)
@@ -78,7 +93,7 @@ public class PlayerLogic : CharacterBase
         if(colTimer >= collisionTime)
         {
             isGrounded = true;
-            rb.angularVelocity = Vector3.zero;
+            rigidBody.angularVelocity = Vector3.zero;
             
             if(diceRoll)
             {
@@ -102,14 +117,20 @@ public class PlayerLogic : CharacterBase
     {
         rollTimer = rollCooldown;
         Vector3 jumpForce = Vector3.up * vertJumpForce;
-        rb.AddForce(jumpForce, ForceMode.Impulse);
+        rigidBody.AddForce(jumpForce, ForceMode.Impulse);
 
         StartCoroutine(RTD());
     }
 
     protected void GetDiceResults()
     {
-        Debug.Log(diceSides.GetHighestSide());
+        if (gunParent != null && diceSides != null)
+        {
+            Gun newGun = diceSides.GetHighestSide().gun;
+
+            if(newGun != null)
+                gunParent.ChangeGun(newGun);
+        }
     }
 
     IEnumerator RTD()
@@ -119,6 +140,7 @@ public class PlayerLogic : CharacterBase
         isGrounded = false;
         diceRoll = true;
     }
+    
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
@@ -133,8 +155,11 @@ public class PlayerLogic : CharacterBase
         }
     }
 
-    public void Attack()
+    public void ShootGun()
     {
-
+        if(gunParent.gun != null)
+        {
+            gunParent.Shoot();
+        }
     }
 }
