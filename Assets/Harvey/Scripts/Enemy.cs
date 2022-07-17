@@ -31,8 +31,7 @@ public class Enemy : CharacterBase
 
     public override void TakeDamage(int damage)
     {
-        // Take damage
-        health -= damage;
+        base.TakeDamage(damage);
 
         // If health is less than or equal to 0
         if (health <= 0)
@@ -44,6 +43,8 @@ public class Enemy : CharacterBase
 
     protected override void Die()
     {
+        base.Die();
+        
         // Throw a debug message
         Debug.Log($" base {gameObject.name} is dead!");
 

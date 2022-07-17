@@ -29,6 +29,7 @@ public class Snake : Enemy
     public Animator[] animationAnimators;
     [Tooltip("The fsm of the snake")]
     [HideInInspector] public Animator fsmAnimator;
+    public SnakeAudio snakeAudio;
 
     void Start()
     {
@@ -40,6 +41,8 @@ public class Snake : Enemy
         {
             attackCooldown = recoilTime;
         }
+
+        if (snakeAudio == null) snakeAudio = GetComponent<SnakeAudio>();
     }
 
     void Update()
@@ -94,22 +97,19 @@ public class Snake : Enemy
 
     public override void TakeDamage(int damage)
     {
-        // Take damage
-        health -= damage;
+        base.TakeDamage(damage);
 
-        // Stun the snake
-        fsmAnimator.SetTrigger("Stun");
-
-        // If health is less than or equal to 0
-        if (health <= 0)
+        if(alive)
         {
-            // Die
-            Die();
+            fsmAnimator.SetTrigger("Stun");
+            snakeAudio.PlaySound(snakeAudio.hiss);
         }
     }
 
     protected override void Die()
     {
+        base.Die();
+        
         // Transition to death state
         fsmAnimator.SetTrigger("Death");
     }

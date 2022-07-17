@@ -31,12 +31,18 @@ public class PlayerLogic : CharacterBase
     [Header("Events")]
     public UnityEvent playerDeath;
 
+    [Header("Audio")]
+    public PlayerAudio playerAudio;
+    public AudioSource slotsSound;
+
 
     protected virtual void Awake()
     {
         if (rigidBody == null) rigidBody = GetComponent<Rigidbody>();
 
         if (diceSides == null) diceSides = GetComponentInChildren<DiceSides>();
+
+        if (playerAudio == null) playerAudio = GetComponent<PlayerAudio>();
 
         health = maxHealth;
 
@@ -118,13 +124,16 @@ public class PlayerLogic : CharacterBase
         rollTimer = rollCooldown;
         Vector3 jumpForce = Vector3.up * vertJumpForce;
         rigidBody.AddForce(jumpForce, ForceMode.Impulse);
-        rigidBody.AddTorque((Vector3.forward + Vector3.right) * rotTorque);
+
+        slotsSound.gameObject.SetActive(true);
 
         StartCoroutine(RTD());
     }
 
     protected void GetDiceResults()
     {
+        slotsSound.gameObject.SetActive(false);
+        
         if (gunParent != null && diceSides != null)
         {
             Gun newGun = diceSides.GetHighestSide().gun;
@@ -145,6 +154,8 @@ public class PlayerLogic : CharacterBase
     {
         yield return new WaitForSeconds(collisionTime);
 
+        rigidBody.AddTorque((Vector3.forward + Vector3.right) * rotTorque);
+
         isGrounded = false;
         diceRoll = true;
     }
@@ -153,12 +164,16 @@ public class PlayerLogic : CharacterBase
     {
         base.Heal(heal);
 
+        playerAudio.PlaySound(playerAudio.heal);
+        
         GameManager.Instance.updateHealth?.Invoke(health);
     }
 
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+
+        playerAudio.PlaySound(playerAudio.hurt);
         
         GameManager.Instance.updateHealth?.Invoke(health);
 

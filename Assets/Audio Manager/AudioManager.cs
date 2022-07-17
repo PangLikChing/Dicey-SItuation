@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class AudioManager : Singleton<AudioManager>
 {
-    public float backgroundVolume = 1.0f;
-    public float soundFXVolume = 1.0f;
+    [Range(0f, 1f)] public float backgroundVolume = 1.0f;
+    [Range(0f, 1f)] public float soundFXVolume = 1.0f;
 
     [System.Serializable]
     public class VolumeChangedEvent : UnityEvent<float> { }
