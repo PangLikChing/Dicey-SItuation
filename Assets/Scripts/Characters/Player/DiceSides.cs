@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DiceSides : MonoBehaviour
 {
-    public List<GameObject> sides = new List<GameObject>();
+    public List<Side> sides = new List<Side>();
 
     private void Start()
     {
@@ -13,12 +13,15 @@ public class DiceSides : MonoBehaviour
         {
             foreach (Transform child in transform)
             {
-                sides.Add(child.gameObject);
+                Side side = child.gameObject.GetComponent<Side>();
+
+                if(side != null)
+                    sides.Add(side);
             }
         }
     }
 
-    public GameObject GetHighestSide()
+    public Side GetHighestSide()
     {
         return sides.OrderByDescending(item => item.transform.position.y).First();
     }

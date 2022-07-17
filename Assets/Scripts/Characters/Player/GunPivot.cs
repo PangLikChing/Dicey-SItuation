@@ -10,8 +10,6 @@ public class GunPivot : MonoBehaviour
     {
         if (follow != null)
         {
-
-
             transform.position = follow.position;
 
             #region RotateToMousePos
