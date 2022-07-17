@@ -118,6 +118,7 @@ public class PlayerLogic : CharacterBase
         rollTimer = rollCooldown;
         Vector3 jumpForce = Vector3.up * vertJumpForce;
         rigidBody.AddForce(jumpForce, ForceMode.Impulse);
+        rigidBody.AddTorque((Vector3.forward + Vector3.right) * rotTorque);
 
         StartCoroutine(RTD());
     }
@@ -128,8 +129,15 @@ public class PlayerLogic : CharacterBase
         {
             Gun newGun = diceSides.GetHighestSide().gun;
 
-            if(newGun != null)
+            if (newGun != null)
+            {
                 gunParent.ChangeGun(newGun);
+            }
+            else
+            {
+                gunParent.ChangeGun(gunParent.gun);
+                Heal(maxHealth);
+            }
         }
     }
 
@@ -140,10 +148,18 @@ public class PlayerLogic : CharacterBase
         isGrounded = false;
         diceRoll = true;
     }
-    
+
+    public override void Heal(int heal)
+    {
+        base.Heal(heal);
+
+        GameManager.Instance.updateHealth?.Invoke(health);
+    }
+
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
+        
         GameManager.Instance.updateHealth?.Invoke(health);
 
         if (health <= 0)
