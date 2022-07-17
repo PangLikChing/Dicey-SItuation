@@ -43,8 +43,5 @@ public class SnakeRecoilState : SnakeBaseState
 
     public override void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        //test
-        snake.TakeDamage(10);
-        //test
     }
 }
