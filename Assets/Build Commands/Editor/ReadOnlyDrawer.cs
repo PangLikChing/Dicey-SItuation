@@ -18,8 +18,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-namespace Project.Build.Commands
-{
+
     [CustomPropertyDrawer(typeof(ReadOnlyAttribute))]
     public class ReadOnlyDrawer : PropertyDrawer
     {
@@ -38,4 +37,3 @@ namespace Project.Build.Commands
             GUI.enabled = true;
         }
     }
-}

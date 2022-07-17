@@ -20,6 +20,11 @@ public class PlayerLogic : CharacterBase
     [SerializeField] protected bool isGrounded = false;
     [SerializeField] protected bool diceRoll = false;
     [SerializeField] protected float rollTimer = 0f;
+
+    [Header("Guns")]
+    public GunParent gunParent;
+
+
     [SerializeField] protected float colTimer = 0f;
     [SerializeField] protected DiceSides diceSides;
     public UnityEvent playerDeath;
@@ -126,5 +131,10 @@ public class PlayerLogic : CharacterBase
             // Tell the game manager that the player is dead
             playerDeath.Invoke();
         }
+    }
+
+    public void Attack()
+    {
+
     }
 }
