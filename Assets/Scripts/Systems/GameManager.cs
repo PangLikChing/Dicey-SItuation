@@ -8,22 +8,29 @@ public class GameManager : Singleton<GameManager>
     public enum GameState
     {   MainMenu,
         Pause,
-        Play
+        Play,
+        GameOver
     }
-    public GameState gameState;
+    [HideInInspector] public GameState gameState;
 
-    public List<Enemy> enemyList;
+    List<Enemy> enemyList;
+
+    [Tooltip("The maximum amount of enemies can be present at once in the game world")]
+    [SerializeField] int maximumEnemies = 10;
+
     public UnityEvent<bool> tooManyEnemies;
     public UnityEvent<int> updateHealth;
     public UnityEvent<int> updateScore;
     public UnityEvent<int> updateHighscore;
+    public UnityEvent<Sprite> updateWeaponSprite;
+    public UnityEvent<int, int> updateAmmo;
 
-    [SerializeField] int maximumAmountOfEnemies = 10;
-
-    public PlayerLogic player { get; set; }
-
-    public int highScore { get; set; }
-    public int score { get; set; }
+    [Tooltip("The player of the game")]
+    [HideInInspector] public PlayerLogic player { get; set; }
+    [Tooltip("The current score of the player")]
+    [HideInInspector] public int score { get; set; }
+    [Tooltip("The highscore of the player")]
+    [HideInInspector] public int highScore { get; set; }
 
     private void Start()
     {
@@ -37,7 +44,8 @@ public class GameManager : Singleton<GameManager>
         // If there is a highscore
         if (PlayerPrefs.HasKey("Highscore"))
         {
-            updateHighscore.Invoke(PlayerPrefs.GetInt("Highscore"));
+            highScore = PlayerPrefs.GetInt("Highscore");
+            updateHighscore.Invoke(highScore);
         }
         // If there is no highscore yet
         else
@@ -46,6 +54,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    // Response when an enemy is spawned
     public void SpawnEnemyListenerEvent(Enemy enemy)
     {
         // Add the enemy list to the enemy list
@@ -55,12 +64,14 @@ public class GameManager : Singleton<GameManager>
         CheckGameWorldEnemies();
     }
 
+    // Function to update current score in the game manger
     public void UpdateScore(int _score)
     {
         // Increase the score
         score += _score;
     }
 
+    // Response when an enemy is dead
     public void EnemyDiedListenerEvent(Enemy enemy)
     {
         // Remove the enemy from the enemy list
@@ -76,10 +87,11 @@ public class GameManager : Singleton<GameManager>
         updateScore?.Invoke(score);
     }
 
+    // Function to check if there is too many enemies in the game world
     private void CheckGameWorldEnemies()
     {
         // If there are too many enemies on the game world
-        if (enemyList.Count >= maximumAmountOfEnemies)
+        if (enemyList.Count >= maximumEnemies)
         {
             // Broadcast the message that there are too many enemies in the game world
             tooManyEnemies.Invoke(true);
@@ -91,6 +103,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    // Response when the player is dead
     public void PlayerDeath()
     {
         // See if the highscore should be updated
@@ -101,6 +114,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log("Player Death");
     }
 
+    // Function to update highscore in the UI
     private void UpdateHighscore(int score)
     {
         // If there is a highscore already
@@ -111,7 +125,8 @@ public class GameManager : Singleton<GameManager>
             {
                 // Update the highscore
                 PlayerPrefs.SetInt("Highscore", score);
-                updateHighscore.Invoke(PlayerPrefs.GetInt("Highscore"));
+                highScore = PlayerPrefs.GetInt("Highscore");
+                updateHighscore.Invoke(highScore);
             }
         }
         // If there no highscore yet
@@ -119,7 +134,25 @@ public class GameManager : Singleton<GameManager>
         {
             // Update the highscore
             PlayerPrefs.SetInt("Highscore", score);
-            updateHighscore.Invoke(PlayerPrefs.GetInt("Highscore"));
+            highScore = PlayerPrefs.GetInt("Highscore");
+            updateHighscore.Invoke(highScore);
         }
+    }
+
+    // Function to update the gun sprite and ammo in the game manger
+    public void UpdateGun(GunParent gunParent)
+    {
+        //// Update gun's icon on the UI
+        //updateWeaponSprite.Invoke(gunParent);
+
+        // Update ammo
+        updateAmmo.Invoke(gunParent.max_ammo, gunParent.max_ammo);
+    }
+
+    // Function to update current ammo in the game manger
+    public void UpdateCurrentAmmo(GunParent gunParent)
+    {
+        // Update ammo
+        updateAmmo.Invoke(gunParent.ammo, gunParent.max_ammo);
     }
 }
