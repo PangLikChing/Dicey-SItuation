@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
@@ -7,7 +8,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : Singleton<GameManager>
 {
     public enum GameState
-    {   MainMenu,
+    {
+        MainMenu,
         Pause,
         Play,
         GameOver
@@ -56,6 +58,18 @@ public class GameManager : Singleton<GameManager>
             updateHighscore.Invoke(0);
         }
     }
+    private void FixedUpdate()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+        }
+    }
+
 
     // Response when an enemy is spawned
     public void SpawnEnemyListenerEvent(Enemy enemy)
