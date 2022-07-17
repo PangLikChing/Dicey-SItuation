@@ -115,7 +115,6 @@ public class GameManager : Singleton<GameManager>
         // Throw the player back to the main menu
         SceneManager.LoadScene(mainMenuSceneName);
 
-
         Debug.Log("Player Death");
     }
 
