@@ -7,10 +7,10 @@ using UnityEngine.Events;
 public class CharacterBase : MonoBehaviour
 {
     [Header("Status")]
-   [SerializeField] [ReadOnly] protected int health = 100;
+    [SerializeField] [ReadOnly] protected int health = 100;
     [SerializeField] protected int maxHealth = 100;
     [SerializeField] protected bool alive = true;
-    public UnityEvent<CharacterBase> onDeath;
+    //public UnityEvent<CharacterBase> onDeath;
 
     public float Health
     {
@@ -29,7 +29,7 @@ public class CharacterBase : MonoBehaviour
     {
         alive = false;
 
-        onDeath?.Invoke(this);
+        //onDeath?.Invoke(this);
     }
 
     public virtual void TakeDamage(int damage)
