@@ -25,7 +25,7 @@ public class GunParent : MonoBehaviour
         { 
             GameManager.Instance.player.gunParent = this;
         }
-
+        GameManager.Instance.updateAmmo.Invoke(ammo, max_ammo);
     }
     private void Update()
     {
@@ -43,6 +43,7 @@ public class GunParent : MonoBehaviour
             //Inherit the other stats
             type = _gun.type;
             ammo = _gun.max_ammo;
+            max_ammo = _gun.max_ammo;
             firing_speed = _gun.firing_speed;
 
             //We disable the current model, swap it with the new one and set it active
@@ -50,6 +51,7 @@ public class GunParent : MonoBehaviour
             gun = _gun;
             gun.model.SetActive(true);
         }
+        GameManager.Instance.updateAmmo.Invoke(ammo, max_ammo);
     }
 
     public void Shoot()
@@ -101,6 +103,7 @@ public class GunParent : MonoBehaviour
             }
             //Reduce Ammo
             ammo--;
+            GameManager.Instance.updateAmmo.Invoke(ammo, max_ammo);
         }
 
         }
