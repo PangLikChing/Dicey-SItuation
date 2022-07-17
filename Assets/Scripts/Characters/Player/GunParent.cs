@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class GunParent : MonoBehaviour
 {
-    //The guns themselves
-    public Gun automatic;
-    public Gun pistol;
-
-
     //GunParent Stats, these are the ones that the player and UI will need access to.
   [ReadOnly]  public Gun.GunType type;
   [ReadOnly] public int ammo;
@@ -25,6 +20,13 @@ public class GunParent : MonoBehaviour
         { 
             GameManager.Instance.player.gunParent = this;
         }
+
+        //initial gun setup
+        type = gun.type;
+        firing_speed = gun.firing_speed;
+        ammo = gun.max_ammo;
+        max_ammo = gun.max_ammo;
+
         GameManager.Instance.updateAmmo.Invoke(ammo, max_ammo);
     }
     private void Update()
