@@ -9,6 +9,7 @@ public class GunParent : MonoBehaviour
     [ReadOnly] public int ammo;
     [ReadOnly] public int max_ammo;
     [ReadOnly] public float firing_speed;
+    [ReadOnly] public GameObject muzzleFlash;
     public Gun gun;
     public GunAudio gunAudio;
 
@@ -30,6 +31,7 @@ public class GunParent : MonoBehaviour
         ammo = gun.max_ammo;
         max_ammo = gun.max_ammo;
         gunAudio.shot = gun.gunshot;
+        muzzleFlash = gun.muzzleFlash;
     }
 
     private void Start()
@@ -58,6 +60,8 @@ public class GunParent : MonoBehaviour
             ammo = _gun.max_ammo;
             max_ammo = _gun.max_ammo;
             firing_speed = _gun.firing_speed;
+            gunAudio.shot = _gun.gunshot;
+            muzzleFlash = _gun.muzzleFlash;
 
             //We disable the current model, swap it with the new one and set it active
             gun.model.SetActive(false);
@@ -120,14 +124,22 @@ public class GunParent : MonoBehaviour
                 //Reduce Ammo
                 ammo--;
                 gunAudio.PlaySound(gunAudio.shot);
+                StartCoroutine(MuzzleFlash());
                 GameManager.Instance.updateAmmo.Invoke(ammo, max_ammo);
             }
             else
             {
                 gunAudio.PlaySound(gunAudio.empty);
+                shootCD = 0f;
             }
         }
+    }
 
+    IEnumerator MuzzleFlash()
+    {
+        muzzleFlash.SetActive(true);
+        yield return new WaitForEndOfFrame();
+        muzzleFlash.SetActive(false);
     }
     
     private float GetAngleForward()

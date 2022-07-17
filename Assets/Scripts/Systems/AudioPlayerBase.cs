@@ -35,6 +35,7 @@ public abstract class AudioPlayerBase : MonoBehaviour
         audioSource.volume = sound.volume;
         audioSource.pitch = sound.pitch;
         audioSource.PlayOneShot(sound.audioClip);
+        Debug.Log("PlaySound");
     }
 
     /// <summary>

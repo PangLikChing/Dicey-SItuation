@@ -14,4 +14,5 @@ public class Gun : MonoBehaviour
     public GameObject projectile;
     public Sprite sprite;
     public AudioPlayerBase.Sound gunshot;
+    public GameObject muzzleFlash;
 }
