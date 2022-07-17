@@ -9,12 +9,18 @@ public class SnakeDeathState : SnakeBaseState
     float deathTime;
     [Tooltip("The death countdown timer of the snake")]
     float deathCountdown = 0.0f;
+    [Tooltip("Nav mesh agent of the snake")]
+    NavMeshAgent navMeshAgent;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Initialize
         deathTime = snake.timeBeforeDisappear;
         deathCountdown = 0.0f;
+        navMeshAgent = snake.navMeshAgent;
+
+        // Stop the snake
+        navMeshAgent.ResetPath();
 
         // Disable the snake's colider
         snake.GetComponent<CapsuleCollider>().enabled = false;
