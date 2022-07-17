@@ -3033,9 +3033,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1501024573544531139, guid: a3e0432e4f794204cbe0d8f37fe38393, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5980277708348252875, guid: a3e0432e4f794204cbe0d8f37fe38393, type: 3}
       propertyPath: m_Name
       value: HUD Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5980277708348252875, guid: a3e0432e4f794204cbe0d8f37fe38393, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5980277708348252879, guid: a3e0432e4f794204cbe0d8f37fe38393, type: 3}
       propertyPath: m_Pivot.x
