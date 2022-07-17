@@ -24,12 +24,16 @@ public class ProjectileAOEDamager : MonoBehaviour
     }
    public void BOOM(int damage)
     {
-        foreach (Snake enemy in enemiesInRange)
+        if (enemiesInRange.Count != 0)
         {
-            if (enemy != null)
+            foreach (Snake enemy in enemiesInRange)
             {
-                enemy.TakeDamage(damage);
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(damage);
+                }
             }
         }
+        
     }
 }
