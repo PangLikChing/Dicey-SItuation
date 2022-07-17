@@ -4,29 +4,12 @@ using UnityEngine;
 
 public class GunParent : MonoBehaviour
 {
-    #region Guns Data
-    [System.Serializable]
-    public class Gun 
-    {
-        public int max_ammo;
-        public int damage;
-        public float firing_speed;
-        public GameObject model;
-        public enum GunType {Pistol, Automatic };
-        public GunType type;
-
-    }
-
-    public Gun Automatic = new Gun { damage = 5, firing_speed = 0.2f, max_ammo = 30 , type = Gun.GunType.Automatic };
-    public Gun Pistol = new Gun { damage = 3, firing_speed = 0.4f, max_ammo = 7 , type = Gun.GunType.Pistol };
-    #endregion
-
     //GunParent Stats, these are the ones that the player and UI will need access to.
-    public Gun.GunType type;
-    public int ammo;
-    public int max_ammo;
-    public float firing_speed;
-    public GameObject model;
+  [ReadOnly]  public Gun.GunType type;
+  [ReadOnly] public int ammo;
+  [ReadOnly] public int max_ammo;
+  [ReadOnly] public float firing_speed;
+    public Gun gun;
 
     //Extra things which need to be private.
     private float shootCD;
@@ -40,6 +23,10 @@ public class GunParent : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        shootCD += Time.deltaTime;
+    }
     public void ChangeGun(Gun _gun)
     {
         //If we have the same gun, just reload
@@ -55,17 +42,20 @@ public class GunParent : MonoBehaviour
             firing_speed = _gun.firing_speed;
 
             //We disable the current model, swap it with the new one and set it active
-            model.SetActive(false);
-            model = _gun.model;
-            model.SetActive(true);
+            gun.model.SetActive(false);
+            gun = _gun;
+            gun.model.SetActive(true);
         }
     }
 
     public void Shoot()
     {
+        if (shootCD >= firing_speed && ammo > 0)
+        {
+            Instantiate(gun.projectile, transform.position, gameObject.GetComponentInParent<Transform>().rotation);
 
+            shootCD = 0f;
+           //If we want an RPG with AOE damage, need to add specific code for this below and use the GunType.RPG or sth 
+        }
     }
-
-
-
 }
