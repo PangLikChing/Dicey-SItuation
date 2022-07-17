@@ -8,6 +8,13 @@ public class ProjectileLogic : MonoBehaviour
    [ReadOnly] public int damage;
     public bool isAOE;
     public List<Snake> enemiesInRange;
+    public float timeToSelfDestruct = 4.0f;
+
+    private void Awake()
+    {
+        StartCoroutine(DestroySelfTimer());
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -64,4 +71,12 @@ public class ProjectileLogic : MonoBehaviour
         isAOE = true;
         GetComponent<SphereCollider>().enabled = true;
     }
+
+    private IEnumerator DestroySelfTimer()
+    {
+
+        yield return new WaitForSeconds(timeToSelfDestruct);
+        Destroy(gameObject);
+    }
+
 }
