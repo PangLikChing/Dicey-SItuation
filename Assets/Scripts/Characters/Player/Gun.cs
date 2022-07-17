@@ -12,9 +12,4 @@ public class Gun : MonoBehaviour
         public enum GunType { Pistol, Automatic, Shotgun, Sniper, RPG };
         public GunType type;
         public GameObject projectile;
-
-    private void Awake()
-    {
-        projectile.GetComponent<ProjectileLogic>().SetDamage(damage);
-    }
 }

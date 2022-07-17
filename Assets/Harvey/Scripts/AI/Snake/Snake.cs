@@ -92,24 +92,33 @@ public class Snake : Enemy
         }
     }
 
+    //public override void TakeDamage(int damage)
+    //{
+    //    // Take damage
+    //    health -= damage;
+
+    //    // Stun the snake
+    //    fsmAnimator.SetTrigger("Stun");
+
+    //    // If health is less than or equal to 0
+    //    if (health <= 0)
+    //    {
+    //        // Die
+    //        Die();
+    //    }
+    //}
     public override void TakeDamage(int damage)
     {
-        // Take damage
-        health -= damage;
-
+        base.TakeDamage(damage);
         // Stun the snake
         fsmAnimator.SetTrigger("Stun");
 
-        // If health is less than or equal to 0
-        if (health <= 0)
-        {
-            // Die
-            Die();
-        }
     }
+
 
     protected override void Die()
     {
+        Debug.Log("Snake Die ");
         // Transition to death state
         fsmAnimator.SetTrigger("Death");
     }

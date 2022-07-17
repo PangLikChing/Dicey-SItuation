@@ -5,25 +5,37 @@ using UnityEngine;
 [System.Serializable]
 public class ProjectileLogic : MonoBehaviour
 {
-    private int damage;
+   [ReadOnly] public int damage;
+    public bool isAOE;
+   [SerializeField] private GameObject AOEObject;
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerLogic player = other.GetComponent<PlayerLogic>();
+        Snake enemy = other.GetComponent<Snake>();
 
-        if (player != null)
+        if (enemy != null)
         {
-            player.TakeDamage(damage);
-            Destroy(this.gameObject);
+            if (!isAOE)
+            {
+                enemy.TakeDamage(damage);
+                Destroy(this.gameObject);
+            }
+            else
+            {
+                AOEObject.GetComponent<ProjectileAOEDamager>().BOOM(damage);
+                Destroy(this.gameObject);
+            }
+
         }
-    }
-    private void Awake()
-    {
-        transform.LookAt(transform.forward, Vector3.up);
     }
 
     public void SetDamage(int _damage)
     {
         damage= _damage;
+    }
+
+    public void SetAOE()
+    {
+        AOEObject.SetActive(true);
     }
 }

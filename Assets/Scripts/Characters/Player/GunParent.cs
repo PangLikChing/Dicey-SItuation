@@ -57,20 +57,63 @@ public class GunParent : MonoBehaviour
         if (shootCD >= firing_speed && ammo > 0)
         {
 
-            if (gun.type == Gun.GunType.Pistol | gun.type == Gun.GunType.Automatic | gun.type == Gun.GunType.Sniper)
-            {
-                Instantiate(gun.projectile, transform.position, transform.rotation);
-                shootCD = 0f;
-            }
-            else if (gun.type == Gun.GunType.Shotgun)
+            //Because the only logic separate is for shotgun because its the most amazing thing ever
+            if (gun.type == Gun.GunType.Shotgun)
             {
 
+                //Cache Eulers for later
+                //We take the forward angle and calculate steps to spawn the projectiles in
+                Vector3 eulerAngles = transform.rotation.eulerAngles;
+                float fwdAngle = GetAngleForward();
+                float angleDir = fwdAngle + 60.0f * 0.5f;
+                float angle = angleDir;
+                float angleStep = 15.0f;
+
+                for (int i = 0; i < 5; i++)
+                {
+                    //We do math here (obv) to figure out what the resulted position is going to be
+                    float angleRad = angle * (Mathf.PI / 180.0f);
+                    Vector3 result = new Vector3(Mathf.Cos(angleRad), 0, Mathf.Sin(angleRad));
+                    result = Quaternion.Euler(0, +eulerAngles.y, 0) * result;
+                    Quaternion pos = Quaternion.FromToRotation(transform.forward, result);
+
+                    ProjectileLogic projectile = Instantiate(gun.projectile, transform.position, pos * gun.projectile.transform.rotation).GetComponent<ProjectileLogic>();
+                    projectile.SetDamage(gun.damage);
+
+                    angle -= angleStep;
+                }
+
+                shootCD = 0f;
             }
             else if (gun.type == Gun.GunType.RPG)
             {
-
+                ProjectileLogic projectile = Instantiate(gun.projectile, transform.position, transform.rotation * gun.projectile.transform.rotation).GetComponent<ProjectileLogic>();
+                projectile.SetDamage(gun.damage);
+                projectile.SetAOE();
+                shootCD = 0f;
             }
-           //If we want an RPG with AOE damage, need to add specific code for this below and use the GunType.RPG or sth 
+            //All other instanatiations are in one line.
+            else
+            {
+                ProjectileLogic projectile = Instantiate(gun.projectile, transform.position, transform.rotation * gun.projectile.transform.rotation).GetComponent<ProjectileLogic>();
+                projectile.SetDamage(gun.damage);
+                shootCD = 0f;
+            }
+            //Reduce Ammo
+            ammo--;
         }
+
+        }
+    
+
+    private float GetAngleForward()
+    {
+        Vector3 aimDir = transform.forward;
+        float angle = Mathf.Atan2(aimDir.z, aimDir.x) * Mathf.Rad2Deg;
+        if (angle < 0)
+        {
+            angle += 360;
+        }
+        return angle;
     }
 }
