@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameState: 0
-  enemyList: []
+  mainMenuSceneName: Main Menu
+  maximumEnemies: 100
   tooManyEnemies:
     m_PersistentCalls:
       m_Calls:
@@ -139,7 +140,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  maximumAmountOfEnemies: 10
 --- !u!114 &1072659521
 MonoBehaviour:
   m_ObjectHideFlags: 0

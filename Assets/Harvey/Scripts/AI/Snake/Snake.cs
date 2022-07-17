@@ -99,8 +99,10 @@ public class Snake : Enemy
     {
         base.TakeDamage(damage);
 
-        if(alive)
+        // If the snake is not dead yet
+        if (alive)
         {
+            // Stun the snake and play the take damage animation and sound
             fsmAnimator.SetTrigger("Stun");
             snakeAudio.PlaySound(snakeAudio.hiss);
         }

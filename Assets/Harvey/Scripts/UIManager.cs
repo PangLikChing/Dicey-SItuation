@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIManager : MonoBehaviour
+public class UIManager : Singleton<UIManager>
 {
     [Tooltip("The text that shows the player's current score")]
     [SerializeField] TMP_Text currentScoreScoreText;

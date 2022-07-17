@@ -343,7 +343,7 @@ MonoBehaviour:
   alive: 1
   rigidBody: {fileID: 3608409546560076904}
   moveSpeed: 7
-  vertJumpForce: 20
+  vertJumpForce: 8
   rotTorque: 40
   rollCooldown: 1
   collisionTime: 0.2
