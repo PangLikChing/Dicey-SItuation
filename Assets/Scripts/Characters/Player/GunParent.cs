@@ -56,9 +56,20 @@ public class GunParent : MonoBehaviour
     {
         if (shootCD >= firing_speed && ammo > 0)
         {
-            Instantiate(gun.projectile, transform.position, gameObject.GetComponentInParent<Transform>().rotation);
 
-            shootCD = 0f;
+            if (gun.type == Gun.GunType.Pistol | gun.type == Gun.GunType.Automatic | gun.type == Gun.GunType.Sniper)
+            {
+                Instantiate(gun.projectile, transform.position, transform.rotation);
+                shootCD = 0f;
+            }
+            else if (gun.type == Gun.GunType.Shotgun)
+            {
+
+            }
+            else if (gun.type == Gun.GunType.RPG)
+            {
+
+            }
            //If we want an RPG with AOE damage, need to add specific code for this below and use the GunType.RPG or sth 
         }
     }
