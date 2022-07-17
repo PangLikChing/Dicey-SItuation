@@ -58,6 +58,7 @@ public class GunParent : MonoBehaviour
             ammo = _gun.max_ammo;
             max_ammo = _gun.max_ammo;
             firing_speed = _gun.firing_speed;
+            gunAudio.shot = _gun.gunshot;
 
             //We disable the current model, swap it with the new one and set it active
             gun.model.SetActive(false);
